@@ -2,5 +2,5 @@
 -include_lib("eunit/include/eunit.hrl").
 
 bundleinfo_test() ->
-  bundleinfo:info(),
+  ?debugMsg(io_lib:format("~p", [bundleinfo:info()])),
   ok.
