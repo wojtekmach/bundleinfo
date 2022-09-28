@@ -4,6 +4,7 @@
 static ERL_NIF_TERM bundleinfo_nif_info(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
     NSLog(@"bundleURL=%@", [[NSBundle mainBundle] bundleURL]);
+    NSLog(@"infoDictionary=%@", [[NSBundle mainBundle] infoDictionary]);
     return enif_make_atom(env, "ok");
 }
 
