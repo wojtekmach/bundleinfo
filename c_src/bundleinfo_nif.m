@@ -3,19 +3,9 @@
 
 static ERL_NIF_TERM bundleinfo_nif_info(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
-    NSLog(@"bundleURL=%@", [[NSBundle mainBundle] bundleURL]);
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject: [[NSBundle mainBundle] infoDictionary]
-                                            options: NSJSONWritingPrettyPrinted
-                                            error: &error];
-
-    if (!jsonData) {
-        NSLog(@"Got an error: %@", error);
-        return enif_make_atom(env, "error");
-    } else {
-        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        return enif_make_string(env, [jsonString UTF8String], ERL_NIF_LATIN1);
-    }
+    printf("bundleURL=%s\n", [[NSString stringWithFormat:@"%@", [[NSBundle mainBundle] bundleURL]] UTF8String]);
+    printf("infoDictionary=%s\n", [[NSString stringWithFormat:@"%@", [[NSBundle mainBundle] infoDictionary]] UTF8String]);
+    return enif_make_atom(env, "ok");
 }
 
 static ErlNifFunc nif_funcs[] =
